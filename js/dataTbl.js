@@ -1,6 +1,6 @@
 var s_wlc = [];
 var s_ap = [];
-var base_url = "http://greyboxerp.in/wpundit";
+var base_url = "https://greyboxerp.in/wpundit";
 
 function getData(q,type,f,dSuccess,dError) {
 	 
