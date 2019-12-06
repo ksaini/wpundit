@@ -1,0 +1,36 @@
+/* Search Box Styling*/
+input[type=text].editField {
+    width: 150px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+    background-color: white; 
+    background-repeat: no-repeat;
+}
+
+input[type=text].editCommentField {
+    width: 200px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+    background-color: white; 
+    background-repeat: no-repeat;
+}
+input[type=button].editButton {
+	color:white;
+    font-size: 12px;
+    background-color:#4CAF50; 
+}
+
+tr.failed{
+	bgcolor:red;
+	color:white;
+}
+input[type=button].viewHistory,input[type=button].download {
+	color:white;
+    font-size: 12px;
+    background-color:#008CBA; 
+}
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+	 <script src="./js/jquery.min.js"></script>
+	<script src="./assets/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+	<link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+	
+    <title>Wireless Pundit</title>
+	 <style>
+body {
+	
+	background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    height: auto !important;
+    min-height:100%;
+	text-transform:inherit;
+	height: 100%;
+}	
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent;
+    color: #444;
+    text-align: center;
+	text-transform:none;
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    background-color: #FFF;    
+}
+
+.btn-group.open .dropdown-toggle {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6)
+}
+
+.btn-group {width: 100%}
+.dropdown-menu {width: 100%;}
+.pname {
+	font-family: 'open_sans','Open Sans',sans-serif;
+	text-align: center;
+    font-size: 26px;
+    font-weight: 400;
+	color: #4F545B;
+	letter-spacing: 3px;
+	margin-top:10px;
+	margin-bottom:5px;
+}
+.pdesc {
+	font-family: 'open_sans','Open Sans',sans-serif;
+	text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+	color: #4F545B;
+	letter-spacing: 1px;
+	margin-top:10px;
+	margin-bottom:5px;
+	display:flex;
+	padding-left:30px;
+	padding-right:30px;
+}
+.btn {
+	font-family: 'open_sans','Open Sans',sans-serif;
+	margin-top:120px;
+	width:80%;
+	font-weight:500;
+	font-size:14px;
+}
+.base {
+	
+	display:flex;
+	justify-content: center;
+	text-align:center;
+	padding-top:70px;
+	
+}
+	</style>
+</head>
+
+<body>
+<form>
+
+    <div class="content" style="background-color:white;">
+        <div class="container-fluid">
+		<div class="card base" style="text-align:center;">
+			<div class="panel-body " style="width:400px;">
+                    
+					<img class=''  src="img/pundit.png" align="center" style="width:145px;" /><br>
+					<p class="pname">Wireless Pundit</p>
+					<div class = "pdesc">Recommendation for S/W release and HW Refresh cycle</div> 
+					<button class="btn btn-info" type="button"  onclick="findSW();">Find S/W</button>
+            </div>
+		</div>		
+		</div>	
+		<div class="footer">
+  <p>powered by <b style="color:#E87E04;">GreyBox Software</b></p>
+</div>
+	</div>
+</form>	
+</body>
+
+<script type="text/javascript" src="js/dataTbl.js"></script>
+
+<script async defer type="text/javascript">
+//app.initialize();
+
+getData("code=1",0,"getData.php",getAPList,eRR);
+getData("code=2",0,"getData.php",getWLCList,eRR);
+
+function findSW(){
+	localStorage.wlc="";
+	localStorage.ap = "";
+	window.location.href='showSW.html';
+}
+function getAPList(data){
+	var d = JSON.parse(data);
+	var ap = [];
+	for(var i=0; i<d.length; i++){
+		ap.push(d[i]["apid"]);
+	}
+	localStorage.apList = JSON.stringify(ap);
+}
+function getWLCList(data){
+	var d = JSON.parse(data);
+	var wlc = [];
+	for(var i=0; i<d.length; i++){
+		wlc.push(d[i]["wlcid"]);
+	}
+	localStorage.wlcList = JSON.stringify(wlc);
+}
+
+</script>
+
+</html>
